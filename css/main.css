@@ -21,9 +21,13 @@ h1{
     margin: 0 auto 50px;
 }
 
-main{ display: flex;}
+main{
+    display: flex;
+}
 
-article{max-width: 70%;}
+article{
+    max-width: 70%;
+}
 
 .main-line {
     margin: 25px 0 0 50px;
@@ -77,8 +81,9 @@ button:hover{background-color: #796b58;}
 aside{
     margin-left: 100px;
     width: 30%;
-    border: #391A05 2px solid;
+    border: #391A05 2px solid ;
     background-color: rgba(0,0,0,0.3);
+    max-height: 690px;
 }
 
 aside > p {
@@ -124,13 +129,21 @@ aside > p {
     text-transform: uppercase;
 }
 
-.bank {
+.duration{
     font-size: 25px;
     margin-top: 50px;
     margin-left: 100px ;
 }
 
-.new{
+.bank{
+    font-size: 25px;
+    margin-left: 100px ;
+}
+
+footer{
+    /*border: greenyellow 3px solid;*/
     margin-top: 50px;
-    margin-left: 1000px;
+    padding-left: 245px;
+    display: flex;
+    justify-content: center;
 }

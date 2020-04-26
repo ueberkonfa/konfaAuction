@@ -17,6 +17,7 @@ $("document").ready(function () {
     auto.addLot();
     auto.addLot();
     auto.addLot();
+    // auto.addButtonNewLot();
 });
 
 var timer = {
@@ -124,16 +125,30 @@ var timer = {
     dateActRefresh: function() {
         this.dateAct = new Date();
         var deltaOregon = 7;
+        var hoursOregon = ('00' + this.dateAct.getUTCHours().toFixed(0)).slice(-2) - 0 - deltaOregon;
+        if (hoursOregon < 0) {
+            hoursOregon += 24;
+        }
         document.getElementById('date-act-moscow').innerHTML = ('00' + this.dateAct.getUTCHours().toFixed(0)).slice(-2) - 0 + 3 + ':' + ('00' + this.dateAct.getMinutes().toFixed(0)).slice(-2) + ':' + ('00' + this.dateAct.getSeconds().toFixed(0)).slice(-2);
-        document.getElementById('date-act-oregon').innerHTML = ('00' + this.dateAct.getUTCHours().toFixed(0)).slice(-2) - 0 - deltaOregon + ':' + ('00' + this.dateAct.getMinutes().toFixed(0)).slice(-2) + ':' + ('00' + this.dateAct.getSeconds().toFixed(0)).slice(-2);
+        document.getElementById('date-act-oregon').innerHTML = hoursOregon + ':' + ('00' + this.dateAct.getMinutes().toFixed(0)).slice(-2) + ':' + ('00' + this.dateAct.getSeconds().toFixed(0)).slice(-2);
         let timeSpend = this.dateAct.getTime() - timer.dateStart.getTime();
 
         let hourSpend = Math.floor(timeSpend / (60000 * 60));
-        let minSpend = Math.floor((timeSpend - hourSpend * (60000 * 60))/ 60000);
+        let minSpend = Math.floor((timeSpend - hourSpend * (60000 * 60)) / 60000);
         let secSpend = Math.floor((timeSpend - minSpend * 60000 - hourSpend * (60000 * 60)) / 1000);
         document.getElementById('time-spend').innerHTML = ('00' + hourSpend).slice(-2) + ':' + ('00' + minSpend).slice(-2) + ':' + ('00' + secSpend).slice(-2);
-
     },
+
+     bankRefresh: function() {
+         var sumBank = 0;
+         var last = document.getElementsByClassName("sum").length;
+         for(var i = 1; i < last; i++){
+             if( parseFloat(document.getElementById('price-' + i).value)){
+                 sumBank += parseFloat(document.getElementById('price-' + i).value);
+             }
+         }
+         document.getElementById('bank').innerHTML = sumBank;
+     }
 };
 
 
@@ -148,14 +163,21 @@ var auto = {
     addLot: () => {
         let i = 1 + $('article').children().length;
         $('article').append('<section class="main-line" id="lot-' + i + '">' +
-                        '<input type="text" class="name" id="title-' + i + '"> ' +
+                        '<input type="text" class="name" onchange="auto.addLot()" id="title-' + i + '"> ' +
                             '<span class="split">-</span>' +
                         '<input type="text" class="sum" onchange="auto.sorting(), auto.point(' + i + ')" id="price-' + i + '" data-buttons="false"> ' +
                             '<span class="split">₽</span> ' +
                         '<input type="text" class="plus" id="add-' + i + '" data-buttons="false">' +
                         '<button class="add" onclick="auto.addPrice(' + i + '), auto.sorting();">+</button>' +
                     '</section>');
+        // auto.addButtonNewLot()
     },
+
+    // addButtonNewLot: ()=>{
+    //     $(".new").remove();
+    // // let i = 1 + $('article').children().length;
+    //     $('footer').append('<button class="new" onclick="auto.addLot()">new lot</button>');
+    // },
 
     read: () => {
         let a = $('article').children().length;
@@ -237,4 +259,5 @@ var auto = {
 
 timer.dateStart  = new Date();
 setInterval(timer.dateActRefresh,500);
+setInterval(timer.bankRefresh,500);
 
