@@ -1,26 +1,22 @@
 $("document").ready(function () {
     // $(".new").click(function(e){  //.on("click", function()
-    //     var section = jQuery(".main-line").clone();
+    //     let section = jQuery(".main-line").clone();
     //     $("article").append(section);
     // });
     //
     // $(".add").on("click", function(){
-    //     var sum = parseFloat(jQuery(".sum").val());
-    //     var plus = parseFloat(jQuery(".plus").val().replace(",", "."));
+    //     let sum = parseFloat(jQuery(".sum").val());
+    //     let plus = parseFloat(jQuery(".plus").val().replace(",", "."));
     //     rezult = sum + plus;
     //     $(".sum").val(rezult); // val - html for div
     // });
-    auto.addLot();
-    auto.addLot();
-    auto.addLot();
-    auto.addLot();
-    auto.addLot();
-    auto.addLot();
-    auto.addLot();
-    // auto.addButtonNewLot();
+    let startLot = 8;
+    for(let i = 0; i < startLot; i++) {
+        auto.addLot();
+    }
 });
 
-var timer = {
+let timer = {
     time: 600000,
     timerID: 0,
     timeString: '10:00.000',
@@ -30,7 +26,6 @@ var timer = {
     dateStart: new Date(),
     dateEnd: 0,
 
-    // Умный тик
     smartTick: function(tickValue) {
         if (this.time >= tickValue) {
             this.dateAct = new Date();
@@ -45,7 +40,6 @@ var timer = {
         timer.clockTimeFieldRefresh();
     },
 
-    // Ф-ция кнопки обнулить
     clear: function() {
         this.time = 0;
         this.stop();
@@ -54,7 +48,6 @@ var timer = {
         this.dateEnd = 0;
     },
 
-    // Старт
     start: function(tickValue) {
         this.dateEndRefresh();
         if (this.timerID == 0) {
@@ -64,7 +57,6 @@ var timer = {
         document.querySelector('.start-stop-btn').innerHTML = 'Pause';
     },
 
-    // Стоп
     stop: function() {
         clearInterval(this.timerID);
         this.timerID = 0;
@@ -72,15 +64,12 @@ var timer = {
         document.querySelector('.start-stop-btn').innerHTML = 'Start';
     },
 
-    // Добавить время таймера
     addTime: function(addValue) {
         this.time += addValue;
-        // if {this.time > }
         timer.clockTimeFieldRefresh();
         this.dateEndRefresh();
     },
 
-    // Установить время таймера
     setTime: function(setValue) {
         this.time = setValue;
         timer.clockTimeFieldRefresh();
@@ -103,29 +92,25 @@ var timer = {
         return min*60000+sec*1000;
     },
 
-    // Ф-ция для кнопки старт/стоп
     startStop: function (tickValue) {
         if (this.timerID == 0) {
             this.start(tickValue);
         } else {this.stop();}
     },
 
-    // Обновить текстовое поле с обратным отсчётом
     clockTimeFieldRefresh: function () {
         this.minSecToString();
         document.getElementById('aside-timer').innerHTML = this.timeString + "<span>" + this.timeStringEnd + "</span>";
     },
 
-    // Обновить время окончания таймера
     dateEndRefresh: function() {
         this.dateEnd = new Date(new Date().getTime() + this.time);
     },
 
-    // Обновить текущее время
     dateActRefresh: function() {
         this.dateAct = new Date();
-        var deltaOregon = 7;
-        var hoursOregon = ('00' + this.dateAct.getUTCHours().toFixed(0)).slice(-2) - 0 - deltaOregon;
+        let deltaOregon = 7;
+        let hoursOregon = ('00' + this.dateAct.getUTCHours().toFixed(0)).slice(-2) - 0 - deltaOregon;
         if (hoursOregon < 0) {
             hoursOregon += 24;
         }
@@ -140,9 +125,8 @@ var timer = {
     },
 
      bankRefresh: function() {
-         var sumBank = 0;
-         var last = document.getElementsByClassName("sum").length;
-         for(var i = 1; i < last; i++){
+         let sumBank = 0;
+         for(let i = 1; i <document.getElementsByClassName("sum").length; i++){
              if( parseFloat(document.getElementById('price-' + i).value)){
                  sumBank += parseFloat(document.getElementById('price-' + i).value);
              }
@@ -152,9 +136,7 @@ var timer = {
 };
 
 
-
-
-var auto = {
+let auto = {
     content: [],
     names: [],
     prices: [],
@@ -170,14 +152,10 @@ var auto = {
                         '<input type="text" class="plus" id="add-' + i + '" data-buttons="false">' +
                         '<button class="add" onclick="auto.addPrice(' + i + '), auto.sorting();">+</button>' +
                     '</section>');
-        // auto.addButtonNewLot()
-    },
 
-    // addButtonNewLot: ()=>{
-    //     $(".new").remove();
-    // // let i = 1 + $('article').children().length;
-    //     $('footer').append('<button class="new" onclick="auto.addLot()">new lot</button>');
-    // },
+        $(".name").removeAttr("onchange");
+        $('#title-' + $(".name").length).attr('onchange', 'auto.addLot()' );
+    },
 
     read: () => {
         let a = $('article').children().length;
@@ -193,7 +171,7 @@ var auto = {
     },
     write: () => {
         a = auto.content.length;
-        for (i=1; i <= a; i++) {
+        for (i = 1; i <= a; i++) {
             document.getElementById('title-' + i).value = auto.content[(i-1)].name;
             document.getElementById('price-' + i).value = auto.content[(i-1)].price;
             document.getElementById('add-' + i).value = auto.content[(i-1)].add;
@@ -201,6 +179,9 @@ var auto = {
     },
     addPrice: (num) => {
         auto.point(num);
+
+
+
         if ( document.getElementById('add-' + num).value == '') {
             return
         } else if (isNaN(document.getElementById('add-' + num).value)) {
@@ -213,6 +194,22 @@ var auto = {
         }
         document.getElementById('price-' + num).value = 0 + Math.round((parseFloat(document.getElementById('price-' + num).value) + parseFloat(document.getElementById('add-' + num).value))*100)/100;
         document.getElementById('add-' + num).value = '';
+
+        timer.addTime(timer.minSecToTime(1, 0));
+
+        var last = $(".sum").length;
+        for (i = 1; i <= last; i++) {
+            if ($("#price-" + i).val()) {
+                last2 = i;
+            }
+        }
+
+        var newLot = parseFloat($("#price-" + last2).val());
+        var oldLot = parseFloat($("#price-1").val());
+        if (newLot > oldLot) {
+            timer.addTime(timer.minSecToTime(1, 0));
+        }
+
     },
     sorting: () => {
         auto.read();
@@ -232,7 +229,6 @@ var auto = {
         auto.write();
     },
 
-    // Меняем запятые на точки в полях price и add
     point: (num) => {
         let strOld = document.getElementById('add-' + num).value;
         let strNew = "";

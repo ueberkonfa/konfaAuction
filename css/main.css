@@ -1,32 +1,37 @@
+html{
+    height: 100%;
+}
+
 body{
     background: #000000 url(../img/bg3.jpg) no-repeat center/ cover;
-    height: 100vh;
+    height: 100%;
     padding: 0;
     margin: 0;
     font-family: 'play', 'helvectica','arial', sans-serif;
     box-sizing: border-box;
     color: #c9b293;
+    display: flex;
+    flex-direction: column;
 }
 
 header{
-    margin-left: 50px;
     display: flex;
-    margin-top: 40px;
+    margin: 30px 20px;
 }
 
 h1{
-    text-align: center;
     text-transform: uppercase;
-    font-size: 60px;
-    margin: 0 auto 50px;
+    font-size: 40px;
+    margin: 0 auto;
 }
 
 main{
     display: flex;
+    flex-grow: 1;
 }
 
 article{
-    max-width: 70%;
+    max-width: 75%;
 }
 
 .main-line {
@@ -83,7 +88,7 @@ aside{
     width: 30%;
     border: #391A05 2px solid ;
     background-color: rgba(0,0,0,0.3);
-    max-height: 675px;
+    max-height: 775px;
 }
 
 aside > p {
@@ -140,10 +145,31 @@ aside > p {
     margin-left: 100px ;
 }
 
+.new{
+    margin: 30px 100px;
+}
+
 footer{
-    /*border: greenyellow 3px solid;*/
-    margin-top: 50px;
-    padding-left: 245px;
-    display: flex;
+    background: rgba(0,0,0,0.4);
     justify-content: center;
+    min-height: 80px;
+    width: 100%;
+    display: flex;
+    margin-top: 50px;
+}
+
+footer>p{
+    font-size: 30px;
+}
+
+footer>ul{
+    display: flex;
+    list-style: none;
+}
+
+a>img
+{
+    width: 50px;
+    height: 50px;
+    margin-left: 30px;
 }

@@ -14,6 +14,7 @@
 <header>
 <!--    <img id='test 'src="img/ueber_white.png" alt="logo" width="40px" height="50px">-->
     <h1>Uebermarginal auction</h1>
+    <img src="img/info.svg" alt="info" width="50px" height="50px">
 </header>
 <main id="auto-container">
     <article>
@@ -29,14 +30,15 @@
 
     <aside>
         <section class="time">
-            <p>Time in Moscow: <span id="date-act-moscow">00:00:00</span></p>
-            <p>Time in Oregon: <span id="date-act-oregon">00:00:00</span></p>
+            <p>Moscow time: <span id="date-act-moscow">00:00:00</span></p>
+            <p>Oregon time: <span id="date-act-oregon">00:00:00</span></p>
         </section>
 
         <section class="timer-add">
             <button onclick="timer.addTime(timer.minSecToTime(1, 0))">+1</button>
             <button onclick="timer.addTime(timer.minSecToTime(2, 0))">+2</button>
             <button onclick="timer.setTime(timer.minSecToTime(10, 0))">=10</button>
+            <button onclick="timer.addTime(timer.minSecToTime(-1, 0))">-1</button>
         </section>
 
         <p id="aside-timer">10:00.<span>000</span></p>
@@ -48,10 +50,27 @@
 
         <p class="duration">Duration auction: <span id="time-spend">00:00:00</span></p>
         <p class="bank">Money in bank: <span id="bank"></span></p>
+        <button class="new" onclick="auto.addLot()">+ new lot</button>
     </aside>
 </main>
 <footer>
-    <button class="new" onclick="auto.addLot()">new lot</button>
+<!--    <p>Uebermarginal's contact:</p>-->
+    <ul>
+        <li><a href="https://donatepay.ru/donation/76704"><img src="img/donate.svg" alt="donate" title="Донат Убермаргиналу (DonatePay)"></a></li>
+        <li><a href="https://vk.com/ueber_marginal"><img src="img/vk.svg" alt="pageVK" title="Страница ВК Анатолий Миценгендлер"></a></li>
+        <li><a href="https://www.youtube.com/channel/UCJ10M7ftQN7ylM6NaPiEB6w"><img src="img/ueber.svg" alt="youtube" title="Youtube 'uebermarginal'"></a></li>
+        <li><a href="https://vk.com/marzipan_rliker"><img src="img/liker.svg" alt="liker" title="Группа с мемами 'Марципанновый ликёр'"></a></li>
+        <li><a href="https://vk.com/margotopstream"><img src="img/anons.svg" alt="anons" title="Группа с анонсами 'MarginalStream'"></a></li>
+        <li><a href="https://www.youtube.com/channel/UC4rpWi42yPqTA0wnfx7MqOA"><img src="img/youtube.svg" alt="pauStories" title="Youtube 'Паучительные истории"></a></li>
+        <li><a href="https://www.twitch.tv/uebermarginal"><img src="img/twitch.svg" alt="twitch" title="Twitch 'uebermarginal'"></a></li>
+        <li><a href="https://discordapp.com/invite/uem"><img src="img/discord.svg" alt="discord" title="Дискорд-сервер Урусификация(LGBT)"></a></li>
+        <li><a href="https://www.subscribestar.com/uebermarginal"><img src="img/star.png" alt="star" title="SubScribeStar для доступа в конфу и чат"></a></li>
+        <li><a href="https://goodgame.ru/channel/pau_stories/"><img src="img/gg.svg" alt="gg" title="GoodGame 'Паучительные истории'"></a></li>
+        <li><a href="https://www.instagram.com/marginal777/"><img src="img/instagram.svg" alt="inst" title="Instagram Убермаргинала"></a></li>
+        <li><a href="https://docs.google.com/spreadsheets/d/19F2Mrl8OOsogART4Vu_iR1xpO9AAthwt7LOWTfchgNo/edit#gid=0" title="Гуггл таблица с заказынными видосами"><img src="img/google.svg" alt="google"></a></li>
+        <li><a href="mailto:uebermarginal@gmail.com"><img src="img/mail.svg" alt="mail" title="Почта Убермаргинала"></a></li>
+        <li><a href="https://t.me/nonegatives"><img src="img/telegram.svg" alt="mail" title="Телеграмм-канал без негатива"></a></li>
+    </ul>
 </footer>
 </body>
 </html>
