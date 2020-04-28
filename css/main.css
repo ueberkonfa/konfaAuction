@@ -25,6 +25,10 @@ h1{
     margin: 0 auto;
 }
 
+h1>span{
+    color: #feffcd;
+}
+
 main{
     display: flex;
     flex-grow: 1;
@@ -91,7 +95,7 @@ aside{
     max-height: 775px;
 }
 
-aside > p {
+aside p {
     font-size: 20px;
 }
 
@@ -165,6 +169,8 @@ footer>p{
 footer>ul{
     display: flex;
     list-style: none;
+    height: 70px;
+    /*margin-bottom: 0;*/
 }
 
 a>img
@@ -172,4 +178,12 @@ a>img
     width: 50px;
     height: 50px;
     margin-left: 30px;
+    margin-top: 10px;
+}
+
+
+a>img:hover
+{
+    width: 70px;
+    height: 70px;
 }

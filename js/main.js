@@ -145,6 +145,7 @@ let auto = {
     addLot: () => {
         let i = 1 + $('article').children().length;
         $('article').append('<section class="main-line" id="lot-' + i + '">' +
+                            '<span class="number" id="number-' + i + '">x</span>'+
                         '<input type="text" class="name" onchange="auto.addLot()" id="title-' + i + '"> ' +
                             '<span class="split">-</span>' +
                         '<input type="text" class="sum" onchange="auto.sorting(), auto.point(' + i + ')" id="price-' + i + '" data-buttons="false"> ' +
